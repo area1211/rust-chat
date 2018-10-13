@@ -16,9 +16,10 @@ fn main() {
     println!("Hello, world!");
     let address = "0.0.0.0:10000".parse::<SocketAddr>().unwrap();
     let server_socket = TcpListener::bind(&address).unwrap();
-    
+
     let mut event_loop = EventLoop::new().unwrap();
     // 토큰은 소켓의 유일한 식별자이다.
+    // EventSet은 이벤트 구독에 대한 intent를 설명한다.
     event_loop.register(&server_socket, Token(0),
                         EventSet::readable(), PollOpt::edge()).unwrap();
 
